@@ -38,7 +38,7 @@ public class RoteLearnerRunner {
 			 * and displaying the time
 			 */
 			long endTime = System.nanoTime();
-			System.out.println("The amount of time it took to run the program was "+ (endTime-startTime));
+			System.out.println("The amount of time it took to run the program was "+ (endTime-startTime)/1000000);
 			br.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
