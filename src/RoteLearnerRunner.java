@@ -19,7 +19,6 @@ public class RoteLearnerRunner {
 			FileReader fr = new FileReader("xax");
 			BufferedReader br = new BufferedReader(fr);
 			String ln;
-			//if size is wrong then drop the 
 			while( (ln = br.readLine()) !=null){
 				String [] byWords = ln.split(",");
 				String store = byWords[2];

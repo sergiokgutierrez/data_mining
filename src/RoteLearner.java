@@ -11,17 +11,18 @@ import java.util.LinkedList;
 public class RoteLearner {
 	static SimpleDateFormat ft = 
 		      new SimpleDateFormat ("yyyy-MM-dd");
-	HashMap <Transaction, Double>listOfTransactions;
+	HashMap <String, Double>listOfTransactions;
 	String[] days= {"sunday","monday","tuesday","wednesday", "thursday","friday","saturday"};
 	public RoteLearner(){
 		//constructor
-		listOfTransactions  = new HashMap <Transaction, Double>();   
+		listOfTransactions  = new HashMap <String, Double>();   
 	}
 	/*
 	 * roteLearner.insert(store, item, date)
 	 */	
 	public void insert(String store, String item, String date, double value){
-		Transaction newTransaction = new Transaction( store,  item,  getDate(date));
+//		Transaction newTransaction = new Transaction( store,  item,  getDate(date));
+		String newTransaction = store+"-"+ item+"-"+ getDate(date);
 		System.out.println(newTransaction+" "+value);
 		listOfTransactions.put(newTransaction, value);			
 	}
