@@ -42,7 +42,7 @@ public class TestMethods {
     }
     public double nwr_num(String itemNum, double preticted, double actual){
     	double x = ln(preticted +1);
-    	double y = ln(actual +2);
+    	double y = ln(actual +1);
     	return weight(itemNum)*square(x-y);
     }
     public double nwr_denum(String itenNum){
