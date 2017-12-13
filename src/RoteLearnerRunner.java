@@ -19,15 +19,27 @@ public class RoteLearnerRunner {
 			FileReader fr = new FileReader("xax");
 			BufferedReader br = new BufferedReader(fr);
 			String ln;
+			/*
+			 * recording the start of the program
+			 */
+			long startTime = System.nanoTime();
+			
 			while( (ln = br.readLine()) !=null){
-//				String [] byWords = ln.split(",");
-//				String store = byWords[2];
-//				String item = byWords[3];
-//				String date = byWords[1];
-//				double value = Double.parseDouble(byWords[4]);
-//				roteLearner.insert(store, item, date, value); 		
-				System.out.println(ln);
+				String [] byWords = ln.split(",");
+				String store = byWords[2];
+				String item = byWords[3];
+				String date = byWords[1];
+				double value = Double.parseDouble(byWords[4]);
+				roteLearner.insert(store, item, date, value); 		
+//				System.out.println(ln);
 			}
+			/*
+			 * recording the end of the running program
+			 * and displaying the time
+			 */
+			long endTime = System.nanoTime();
+			System.out.println("The amount of time it took to run the program was "+ (endTime-startTime));
+			br.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
