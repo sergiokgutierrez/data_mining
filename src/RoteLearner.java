@@ -23,7 +23,6 @@ public class RoteLearner {
 	public void insert(String store, String item, String date, double value){
 //		Transaction newTransaction = new Transaction( store,  item,  getDate(date));
 		String newTransaction = store+"-"+ item+"-"+ getDate(date);
-		System.out.println(newTransaction+" "+value);
 		listOfTransactions.put(newTransaction, value);			
 	}
 	
