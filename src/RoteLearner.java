@@ -23,11 +23,16 @@ public class RoteLearner {
 	public void insert(String store, String item, String date, double value){
 //		Transaction newTransaction = new Transaction( store,  item,  getDate(date));
 		String newTransaction = store+"-"+ item+"-"+ getDate(date);//store+"-"+ item+"-"+ date
-		listOfTransactions.put(newTransaction, value);			
+		if(value >0 ) {
+			listOfTransactions.put(newTransaction, value);	
+		}			
 	}
 	
 	public double guessValue(String key){
-		return listOfTransactions.get(key);
+		if(listOfTransactions.containsKey(key))
+			return listOfTransactions.get(key);
+		else
+			return 0;
 	}
 	
 

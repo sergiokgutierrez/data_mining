@@ -9,10 +9,7 @@ public class roteLearnerPlatformToRecover {
 	//KNN
 	//CONVERT FILE TO <DATE=7><STOR=55E><ITEMS=200><ONPROMOTION=1>
 	public void recordAmount(){
-		while(){
-			//find record. store value
-			
-		}
+
 	}
 
 }

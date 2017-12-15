@@ -31,14 +31,16 @@ public class RoteLearnerRunner {
 			//File Writer
 			FileWriter fw = new FileWriter("Prediction_Rotatery.txt");
 			String ln= br.readLine();//throw first line away
-			System.out.println(ln);//do wee need to delete this
-			while( (ln = br.readLine()) !=null){
+			System.out.println("throwing line"+ln);//do wee need to delete this
+			while( (ln = br.readLine()) != null){
 				String [] byWords = ln.split(",");
 				String store = byWords[2];
 				String item = byWords[3];
 				String date = byWords[1];
 				String id= byWords[0];
-				fw.append(id+","+roteLearner.guessValue(store+"-"+ item+"-"+roteLearner.getDate(date)));
+				String transaction = store+"-"+ item+"-"+roteLearner.getDate(date);
+				fw.append(id+","+roteLearner.guessValue(transaction));
+				fw.append("\n");
 			}
 			br.close();
 			fw.close();
