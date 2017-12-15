@@ -37,6 +37,9 @@ public class RoteLearner {
 	       }
 		return t.getDay();
 	}
+	public int getTotalTransactions(){
+		return listOfTransactions.size();
+	}
 	
 	
 

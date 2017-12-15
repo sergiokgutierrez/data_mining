@@ -15,19 +15,18 @@ public class RoteLearnerRunner {
 	
 	public static void main(String[] args) {
 		System.out.println("total transactions, time(in miliseconds)");
+		int totalTransactions = 0;
 		for (int i = 20000; i < 125490000; i*=2) {
 			long startTime = System.nanoTime();
-			runerTil(i);
+			totalTransactions=runerTil(i);
 			long endTime = System.nanoTime();
-			System.out.println(i+","+ (endTime-startTime)/1000000);
-		
+			System.out.println(i+","+totalTransactions+""+ (endTime-startTime)/1000000);		
 		}
-		System.out.println("this the last one");
 		countAll();
 		
 	}
 	
-	public static void runerTil(int cap) {
+	public static int runerTil(int cap) {
 		try {
 			RoteLearner roteLearner = new RoteLearner ();
 			FileReader fr = new FileReader("train.csv");
@@ -43,14 +42,16 @@ public class RoteLearnerRunner {
 				roteLearner.insert(store, item, date, value);
 				count++;
 				if(count >cap)
-					return;
+					return roteLearner.getTotalTransactions();
 //				System.out.println(ln);
 			}
 			br.close();
+			return roteLearner.getTotalTransactions();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return -1;//this is not suppost to happen
 	}
 	public static void countAll() {
 		try {
@@ -58,7 +59,7 @@ public class RoteLearnerRunner {
 			RoteLearner roteLearner = new RoteLearner ();
 			FileReader fr = new FileReader("train.csv");
 			BufferedReader br = new BufferedReader(fr);
-			String ln= br.readLine();//trow first line away
+			String ln= br.readLine();//throw first line away
 			int count=0;
 			long startTime = System.nanoTime();
 			while( (ln = br.readLine()) !=null){
