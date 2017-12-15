@@ -14,16 +14,20 @@ public class RoteLearnerRunner {
 
 	
 	public static void main(String[] args) {
+		
+
+		
+	}
+	public static void recordTimeSize(){
 		System.out.println("total transactions, time(in miliseconds)");
 		int totalTransactions = 0;
-		for (int i = 20000; i < 125490000; i*=2) {
+		for (int i = 20000; i < 300490000; i*=2) {
 			long startTime = System.nanoTime();
 			totalTransactions=runerTil(i);
 			long endTime = System.nanoTime();
 			System.out.println(i+","+totalTransactions+""+ (endTime-startTime)/1000000);		
 		}
 		countAll();
-		
 	}
 	
 	public static int runerTil(int cap) {
@@ -53,6 +57,9 @@ public class RoteLearnerRunner {
 		}
 		return -1;//this is not suppost to happen
 	}
+	/*
+	 * method runs the entire file is separated because it is hard get the exact amount of the value
+	 */
 	public static void countAll() {
 		try {
 			System.out.println("here");
