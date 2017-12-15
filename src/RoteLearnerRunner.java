@@ -1,23 +1,84 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.FilterWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 /*
+ *  * Test Data format:
+ *  0	1		  2			  3			 4
+ * id, date, storeNumber, itemNumber, onPromotion 
+ * 
+ * 
+ * Train Data format:
  * 0	1		2			3			4			5
  * id, date, storeNumber, itemNumber, unitsSold, onPromotion 
  */
 
 public class RoteLearnerRunner {
+	public static RoteLearner roteLearner;
+	public static void main(String[] args) {
+		trainModule();		
+		try {
+			/*
+			 * Read Test File and use Model to predict value
+			 */
+			FileReader fr = new FileReader("test.csv");
+			BufferedReader br = new BufferedReader(fr);
+			//File Writer
+			FileWriter fw = new FileWriter("Prediction_Rotatery.txt");
+			String ln= br.readLine();//throw first line away
+			System.out.println(ln);//do wee need to delete this
+			while( (ln = br.readLine()) !=null){
+				String [] byWords = ln.split(",");
+				String store = byWords[2];
+				String item = byWords[3];
+				String date = byWords[1];
+				String id= byWords[0];
+				fw.append(id+","+roteLearner.guessValue(store+"-"+ item+"-"+roteLearner.getDate(date)));
+			}
+			br.close();
+			fw.close();
+			
+			/*
+			 * Read Test
+			 */
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void trainModule(){
+		try {
+			roteLearner = new RoteLearner ();
+			/*
+			 * Read Train File and Train Model
+			 */
+			FileReader fr = new FileReader("train.csv");
+			BufferedReader br = new BufferedReader(fr);
+			String ln= br.readLine();//throw first line away
+			while( (ln = br.readLine()) !=null){
+				String [] byWords = ln.split(",");
+				String store = byWords[2];
+				String item = byWords[3];
+				String date = byWords[1];
+				double value = Double.parseDouble(byWords[4]);
+				roteLearner.insert(store, item, date, value);
+			}
+			br.close();		
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	
-	public static void main(String[] args) {
-		
-
-		
-	}
 	public static void recordTimeSize(){
 		System.out.println("total transactions, time(in miliseconds)");
 		int totalTransactions = 0;
